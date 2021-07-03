@@ -35,7 +35,6 @@ func New(cleanupInterval time.Duration, ratePerSec rate.Limit, burstPerPeriod in
 // more than duration and delete the entries.
 func (rl *RateLimiter) cleanupEntries(duration time.Duration) {
 	for {
-		// time.Sleep(time.Minute)
 		time.Sleep(duration)
 
 		rl.mu.Lock()
@@ -58,7 +57,7 @@ func (rl *RateLimiter) getEntry(k string) *rate.Limiter {
 	v, exists := rl.entries[k]
 	if !exists {
 		limiter := rate.NewLimiter(rl.ratePerSec, rl.burstPerPeriod)
-		// Include the current time when creating a new visitor.
+		// Include the current time when creating a new entry.
 		rl.entries[k] = &entry{limiter, time.Now()}
 		return limiter
 	}
