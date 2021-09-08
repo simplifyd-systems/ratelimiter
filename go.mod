@@ -1,4 +1,4 @@
-module ratelimiter
+module github.com/simplifyd-systems/ratelimiter
 
 go 1.14
 
