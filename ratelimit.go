@@ -73,7 +73,7 @@ func (rl *RateLimiter) Limit(k string) bool {
 	// Call the getEntry function to retreive the rate limiter for
 	// the current entry.
 	limiter := rl.getEntry(k)
-	return limiter.Allow()
+	return !limiter.Allow()
 }
 
 // This allows our callers remove entries for whatever reason their application
